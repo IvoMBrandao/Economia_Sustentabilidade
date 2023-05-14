@@ -1,27 +1,29 @@
 import React from 'react';
 import{View, Text, StyleSheet,Image, Touchable, TouchableOpacity} from 'react-native'
+import * as Animatable from 'react-native-animatable'
 
 export default function Welcome(){
     return(
         <View style={styles.container}>
             <View style={styles.viewImg}>
-                <Image 
+                <Animatable.Image 
+                animation="flipInY"
                 style={styles.img}
                  source={require('../../../assets/Img/shower.png')}
                  />
             </View>
         
 
-            <View style={styles.ViewText}>
-            <Text style={styles.title}> Economia e Sustentabilidade </Text>
-            <Text style={styles.subTitle}> Tenha o controle dos gastos gerados pelos banhos em sua casa</Text>
+            <Animatable.View delay={1000} animation="fadeInUp" style={styles.ViewText}>
+                <Text style={styles.title}> Economia e Sustentabilidade </Text>
+                <Text style={styles.subTitle}> Tenha o controle dos gastos gerados pelos banhos em sua casa</Text>
 
 
-            <TouchableOpacity style={styles.buton}>
-            <Text style={styles.textButon}>Economizar</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.buton}>
+                    <Text style={styles.textButon}>Economizar</Text>
+                </TouchableOpacity>
 
-             </View>
+             </Animatable.View>
            
 
         </View>
