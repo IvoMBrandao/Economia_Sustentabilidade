@@ -1,8 +1,10 @@
 import React from 'react';
 import{View, Text, StyleSheet,Image, Touchable, TouchableOpacity} from 'react-native'
 import * as Animatable from 'react-native-animatable'
+import { useNavigation } from '@react-navigation/native';
 
 export default function Welcome(){
+   const navigation= useNavigation();
     return(
         <View style={styles.container}>
             <View style={styles.viewImg}>
@@ -19,7 +21,10 @@ export default function Welcome(){
                 <Text style={styles.subTitle}> Tenha o controle dos gastos gerados pelos banhos em sua casa</Text>
 
 
-                <TouchableOpacity style={styles.buton}>
+                <TouchableOpacity 
+                style={styles.buton}
+                onPress={()=> navigation.navigate('singin')}
+                >
                     <Text style={styles.textButon}>Economizar</Text>
                 </TouchableOpacity>
 
