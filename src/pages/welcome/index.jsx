@@ -23,9 +23,9 @@ export default function Welcome(){
 
                 <TouchableOpacity 
                 style={styles.buton}
-                onPress={()=> navigation.navigate('singin')}
+                onPress={()=> navigation.navigate('inicio')}
                 >
-                    <Text style={styles.textButon}>Economizar</Text>
+                    <Text style={styles.textButon}>Vamos lá</Text>
                 </TouchableOpacity>
 
              </Animatable.View>

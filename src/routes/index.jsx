@@ -1,6 +1,6 @@
 import{createNativeStackNavigator} from '@react-navigation/native-stack'
 import welcome from'../pages/welcome'
-import singin from'../pages/singin'
+import inicio from'../pages/inicio'
 
 const Stack= createNativeStackNavigator();
 
@@ -14,8 +14,8 @@ export default function Routes(){
             />  
 
             <Stack.Screen
-            name = "singin"
-            component={singin}
+            name = "inicio"
+            component={inicio}
             options={{headerShown:false}}
             />  
         </Stack.Navigator>
