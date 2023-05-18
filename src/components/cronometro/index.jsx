@@ -1,121 +1,119 @@
-import { StatusBar } from 'expo-status-bar';
-import { Component } from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
-class Cronometro extends Component{
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-
-  constructor(props){
+class CronometroApp extends Component {
+  constructor(props) {
     super(props);
     this.state = {
-    numero:0,
-    botao:'',
-    Clean:'',
-    ultimoTempo:null,
+      minutes: 0,
+      seconds: 0,
+      running: false,
     };
     this.timer = null;
-    this.start = this.start.bind(this)
-    this.pause = this.Clean.bind(this)
-  }
-  
-start(){
-  if(this.timer != null){
-    clearInterval(this.timer)
-    this.timer=null; 
-    //parar
-    this.setState({botao:''}) 
-  }
-  else{
-    this.timer = setInterval( () => {
-      this.setState({numero: this.state.numero + 0.01})
-      //time
-     
-     },100)
-
-     this.setState({botao:''})
   }
 
-}
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
 
+  startTimer = () => {
+    this.setState({
+      running: true,
+    });
 
-Clean(){
-if(this.timer != null){
-clearInterval(this.timer)
-this.timer=null; }
-this.setState({
-  ultimoTempo :this.state.numero.toFixed(2),
-  numero:0,
-  botao:'Start'
-})
-}
-  render(){
-  return (
-    <View style={styles.container}>
+    this.timer = setInterval(() => {
+      let { minutes, seconds } = this.state;
+      seconds++;
+
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+      }
+      else{
+        stopTimer = () => {
+    clearInterval(this.timer);
+    this.setState({
+      running: false,
+    });
+  };
+      }
+      this.setState({ minutes, seconds });
+    }, 1000);
+
    
-      <StatusBar style="auto" />
-     
-     
-      <View style={styles.viewBotao}>
-      <TouchableOpacity style={styles.botao} onPress={this.start}>
-        
-        <Text style={styles.texto}>{this.state.botao}</Text>
-        <Text style={styles.timer}>{this.state.numero.toFixed(2)}</Text>
-        
-      </TouchableOpacity>
+  };
 
+  stopTimer = () => {
+    clearInterval(this.timer);
+    this.setState({
+      running: false,
+    });
+  };
 
+  resetTimer = () => {
+    clearInterval(this.timer);
+    this.setState({
+      minutes: 0,
+      seconds: 0,
+      running: false,
+    });
+  };
+
+  
+  render() {
+    const { minutes, seconds, running } = this.state;
+
+    return (
+      <View style={styles.container}>
+         {!running ? (
+          <TouchableOpacity style={styles.button} onPress={this.startTimer}>
+          
+        <Text style={styles.timeText}>
+          {minutes < 10 ? '0' + minutes : minutes}:
+          {seconds < 10 ? '0' + seconds : seconds}
+        </Text>
+       
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={this.stopTimer}>
+             <Text style={styles.timeText}>
+          {minutes < 10 ? '0' + minutes : minutes}:
+          {seconds < 10 ? '0' + seconds : seconds}
+        </Text>
+       
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity style={styles.button} onPress={this.resetTimer}>
+          <Text style={styles.buttonText}>Resetar</Text>
+        </TouchableOpacity>
       </View>
-      
-
-     
-    </View>
-  );
+    );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'blue',
-    alignItems: 'center',
+   marginTop:40,
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  timer:{
-    marginTop:-100,
-    fontSize:65,
+  timeText: {
     color:'#008080',
-    fontWeight:'bold'
+    fontSize: 90,
+    marginBottom: 20,
+    textAlign:'center',
   },
-  viewBotao:{
-    flexDirection:'column',
-    marginTop:70,
-    height:900,
-    width:9000,
+  button: {
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
   },
-botao:{
-flex:1,
-justifyContent:'center',
-alignItems:'center',
-//backgroundColor:'#00008b',
-height:40,
-margin:17,
-borderRadius:9,
-//backgroundColor: pressed ? '#red'
-},
-texto:{
-fontSize:25,
-fontWeight:'bold',
-color:'blue',
-},
-ultimo:{
-  marginTop:40,
-},
-ultimoTexto:{
-  fontSize:30,
-  color:'#fff'
-}
-
-
-
-
+  buttonText: {
+    color: 'black',
+    fontSize: 18,
+  },
 });
-export default  Cronometro;
+
+export default CronometroApp;
