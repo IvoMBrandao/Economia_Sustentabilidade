@@ -16,6 +16,7 @@ class CronometroApp extends Component {
     clearInterval(this.timer);
   }
 
+ 
   startTimer = () => {
     this.setState({
       running: true,
@@ -83,7 +84,8 @@ class CronometroApp extends Component {
        
           </TouchableOpacity>
         )}
-        <TouchableOpacity style={styles.button} onPress={this.resetTimer}>
+        
+        <TouchableOpacity style={styles.buttonStart} onPress={running == true? this.resetTimer : this.startTimer}>
           <Text style={styles.buttonText}>Resetar</Text>
         </TouchableOpacity>
       </View>
@@ -105,13 +107,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign:'center',
   },
-  button: {
+  buttonStart: {
+    backgroundColor:'#008080',
+    width:274,
+    height:56,
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 50,
     marginBottom: 10,
+    marginTop:400
   },
   buttonText: {
-    color: 'black',
+    textAlign:'center',
+    color: '#fff',
     fontSize: 18,
   },
 });

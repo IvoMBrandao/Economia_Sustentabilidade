@@ -65,6 +65,7 @@ const styles= StyleSheet.create({
     title:{
         fontSize: 24,
         fontWeight:'bold',
+        textAlign:'center',
         marginTop:25,
         marginBottom:25
     },
@@ -83,6 +84,11 @@ const styles= StyleSheet.create({
         fontSize:18,
         color:'#FFF',
         fontWeight:'bold'
+    },
+    subTitle:{
+        fontSize:15,
+        textAlign:'center',
+
     }
 
 
