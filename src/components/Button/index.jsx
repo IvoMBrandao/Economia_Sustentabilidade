@@ -20,7 +20,7 @@
      bottom: '15%',
      alignItems: 'center',
      justifyContent: 'center',
-     marginTop: 320,
+     marginTop: 0,
    },
    buttonText: {
      color: '#FFFFFF',

@@ -6,16 +6,21 @@ import{
     StatusBar,
     TouchableOpacity
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 
 import{Feather} from '@expo/vector-icons';
 const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22: 64 ;
 
 export default function Header({name}){
+    const navigation= useNavigation();
     return(
         <View style={styles.container}>
             <View style={styles.content}>
-            <Text style={styles.username}>Ivo Felipe</Text> 
-            <TouchableOpacity activeOpacity={0.6} style={styles.buttomUser}>
+            <Text style={styles.username}>Ivo Felipe </Text> 
+            <TouchableOpacity activeOpacity={0.6} style={styles.buttomUser}
+             onPress={() => navigation.navigate('perfil')}
+            >
          <Feather name="user" size={35} color='#FFF'/>
          </TouchableOpacity>
             </View>

@@ -12,7 +12,7 @@ export default function App() {
   const intervalRef = useRef(null);
   const startTimeRef = useRef(null);
   const progress = number;
-
+  
   useEffect(() => {
     if (isRunning) {
       startTimeRef.current = Date.now() - pausedTime;
@@ -123,5 +123,6 @@ const styles = StyleSheet.create({
     marginTop: 70,
     textAlign: 'center',
     fontSize: 40,
+    marginBottom:320
   },
 });
